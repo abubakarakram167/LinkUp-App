@@ -1,14 +1,14 @@
 import Header from "@/components/Header";
 import AddDocumentBtn from "@/components/ui/AddDocumentBtn";
-import { SignedIn, UserButton } from "@clerk/nextjs";
+import { SignedIn, UserButton, SignedOut, SignInButton } from "@clerk/nextjs";
 import { currentUser } from "@clerk/nextjs/server";
 import Image from "next/image";
 import { redirect } from "next/navigation";
-import React from "react";
 
 const Home = async () => {
 	const documents = [];
 	const user = await currentUser();
+	console.log("the user", user);
 	if (!user) redirect("/sign-in");
 
 	return (
@@ -19,6 +19,9 @@ const Home = async () => {
 					<SignedIn>
 						<UserButton />
 					</SignedIn>
+					<SignedOut>
+						<SignInButton />
+					</SignedOut>
 				</div>
 			</Header>
 			{documents.length > 0 ? (

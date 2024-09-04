@@ -28,5 +28,7 @@ export const createDocument = async ({
 		revalidatePath("/");
 
 		return parseStringify(room);
-	} catch (error) {}
+	} catch (error) {
+		console.log("the error in server", error);
+	}
 };
